@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVA Lab - Nền công nghiệp hóa hiện đại</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles.scss">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        },
+                        dark: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="app">
+        <!-- Loading Screen -->
+        <div id="loading" class="fixed inset-0 bg-dark-900 flex items-center justify-center z-50">
+            <div class="text-center">
+                <div class="w-24 h-24 bg-gradient-to-br from-primary-400 to-primary-600 rounded-2xl flex items-center justify-center mb-6 mx-auto animate-pulse-glow">
+                    <span class="text-white font-bold text-3xl">M</span>
+                </div>
+                
+                <h1 class="text-3xl font-bold text-white mb-4 animate-fade-in-up">
+                    MVA Lab
+                </h1>
+                
+                <p class="text-gray-400 mb-8 animate-fade-in-up">
+                    Đang tải nền tảng học tập...
+                </p>
+
+                <div class="flex justify-center">
+                    <div class="w-8 h-8 border-4 border-primary-400 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="main-content" class="min-h-screen bg-dark-900" style="display: none;">
+            <!-- Header -->
+            <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+                <div class="container mx-auto px-6 py-4">
+                    <div class="flex items-center justify-between">
+                        <!-- Logo -->
+                        <div class="flex items-center space-x-3 cursor-pointer hover:scale-105 transition-transform duration-300">
+                            <div class="w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center">
+                                <span class="text-white font-bold text-xl">M</span>
+                            </div>
+                            <span class="text-2xl font-bold text-white">MVA Lab</span>
+                        </div>
+
+                        <!-- Desktop Navigation -->
+                        <nav class="hidden lg:flex items-center space-x-8">
+                            <a href="#courses" class="relative text-gray-300 hover:text-primary-400 transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-primary-500/10 group">
+                                <i class="fas fa-graduation-cap mr-2"></i>
+                                Khóa học
+                                <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-400 group-hover:w-full transition-all duration-300"></div>
+                            </a>
+                            <a href="#solutions" class="relative text-gray-300 hover:text-primary-400 transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-primary-500/10 group">
+                                <i class="fas fa-cogs mr-2"></i>
+                                Giải pháp
+                                <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-400 group-hover:w-full transition-all duration-300"></div>
+                            </a>
+                            <a href="#products" class="relative text-gray-300 hover:text-primary-400 transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-primary-500/10 group">
+                                <i class="fas fa-shopping-cart mr-2"></i>
+                                Cửa hàng
+                                <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-400 group-hover:w-full transition-all duration-300"></div>
+                            </a>
+                            <a href="#blog" class="relative text-gray-300 hover:text-primary-400 transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-primary-500/10 group">
+                                <i class="fas fa-blog mr-2"></i>
+                                Blog
+                                <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-400 group-hover:w-full transition-all duration-300"></div>
+                            </a>
+                            <a href="#about" class="relative text-gray-300 hover:text-primary-400 transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-primary-500/10 group">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Về chúng tôi
+                                <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-400 group-hover:w-full transition-all duration-300"></div>
+                            </a>
+                            <a href="#login" class="relative text-gray-300 hover:text-primary-400 transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-primary-500/10 group">
+                                <i class="fas fa-sign-in-alt mr-2"></i>
+                                Đăng nhập
+                                <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-400 group-hover:w-full transition-all duration-300"></div>
+                            </a>
+                        </nav>
+
+                        <!-- Mobile Menu Button -->
+                        <button id="mobile-menu-btn" class="lg:hidden w-10 h-10 bg-primary-500/20 rounded-lg flex items-center justify-center text-primary-400 hover:bg-primary-500/30 transition-colors duration-300">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+
+                    <!-- Mobile Navigation -->
+                    <nav id="mobile-menu" class="lg:hidden overflow-hidden mt-4" style="height: 0; opacity: 0; transition: all 0.3s ease;">
+                        <div class="space-y-2 pb-4">
+                            <a href="#courses" class="block text-gray-300 hover:text-primary-400 transition-colors duration-300 py-3 px-4 rounded-lg hover:bg-primary-500/10">
+                                <i class="fas fa-graduation-cap mr-3"></i>
+                                Khóa học
+                            </a>
+                            <a href="#solutions" class="block text-gray-300 hover:text-primary-400 transition-colors duration-300 py-3 px-4 rounded-lg hover:bg-primary-500/10">
+                                <i class="fas fa-cogs mr-3"></i>
+                                Giải pháp
+                            </a>
+                            <a href="#products" class="block text-gray-300 hover:text-primary-400 transition-colors duration-300 py-3 px-4 rounded-lg hover:bg-primary-500/10">
+                                <i class="fas fa-shopping-cart mr-3"></i>
+                                Cửa hàng
+                            </a>
+                            <a href="#blog" class="block text-gray-300 hover:text-primary-400 transition-colors duration-300 py-3 px-4 rounded-lg hover:bg-primary-500/10">
+                                <i class="fas fa-blog mr-3"></i>
+                                Blog
+                            </a>
+                            <a href="#about" class="block text-gray-300 hover:text-primary-400 transition-colors duration-300 py-3 px-4 rounded-lg hover:bg-primary-500/10">
+                                <i class="fas fa-info-circle mr-3"></i>
+                                Về chúng tôi
+                            </a>
+                            <a href="#login" class="block text-gray-300 hover:text-primary-400 transition-colors duration-300 py-3 px-4 rounded-lg hover:bg-primary-500/10">
+                                <i class="fas fa-sign-in-alt mr-3"></i>
+                                Đăng nhập
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+
+            <main>
+                <!-- Hero Section -->
+                <section class="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
+                    <!-- Background patterns and effects -->
+                    <div class="absolute inset-0 circuit-pattern"></div>
+                    <div class="absolute inset-0 geometric-bg"></div>
+                    
+                    <!-- Floating geometric shapes -->
+                    <div class="absolute top-20 left-10 w-20 h-20 border-2 border-primary-500/30 rotate-45 animate-float"></div>
+                    <div class="absolute bottom-32 right-16 w-16 h-16 border-2 border-orange-500/30 rotate-12 animate-float" style="animation-delay: 2s;"></div>
+                    <div class="absolute top-1/2 left-20 w-12 h-12 bg-primary-500/10 rounded-full animate-pulse"></div>
+
+                    <div class="container mx-auto px-6 py-32 relative z-10">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center">
+                            <!-- Left Content -->
+                            <div class="space-y-8 animate-slide-in-left">
+                                <div class="space-y-6">
+                                    <div class="inline-flex items-center px-4 py-2 bg-primary-500/20 rounded-full text-primary-300 text-sm border border-primary-500/30">
+                                        <i class="fas fa-rocket mr-2"></i>
+                                        Khám phá tương lai
+                                    </div>
+
+                                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
+                                        <span class="text-white">Nền công nghiệp</span>
+                                        <br />
+                                        <span class="text-glow bg-gradient-to-r from-primary-400 to-orange-400 bg-clip-text text-transparent">
+                                            hóa hiện đại
+                                        </span>
+                                        <br />
+                                        <span class="text-white underline decoration-primary-400 decoration-4 underline-offset-8">
+                                            Hà Nội
+                                        </span>
+                                    </h1>
+
+                                    <p class="text-xl text-gray-300 leading-relaxed max-w-lg">
+                                        Xử lý ảnh công nghiệp giúp máy móc kiểm tra sản phẩm nhanh chóng và chính xác hơn con người...
+                                    </p>
+                                </div>
+
+                                <div class="flex flex-col sm:flex-row gap-4">
+                                    <button class="group px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-300 flex items-center justify-center glow-effect hover:scale-105">
+                                        <i class="fas fa-play mr-3"></i>
+                                        Xem thêm
+                                        <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+                                    </button>
+                                    
+                                    <button class="px-8 py-4 border-2 border-primary-500 text-primary-400 rounded-xl font-semibold hover:bg-primary-500 hover:text-white transition-all duration-300 flex items-center justify-center">
+                                        <i class="fas fa-phone mr-3"></i>
+                                        Liên hệ ngay
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Right Content - 3D Visual -->
+                            <div class="relative animate-slide-in-right">
+                                <div class="relative w-full h-96 lg:h-[500px]">
+                                    <!-- Main device illustration -->
+                                    <div class="absolute inset-0 bg-gradient-to-br from-dark-700 to-dark-900 rounded-3xl shadow-2xl overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                        
+                                        <!-- Industrial equipment visualization -->
+                                        <div class="absolute inset-4 border-2 border-primary-500/30 rounded-2xl">
+                                            <div class="w-full h-full flex items-center justify-center">
+                                                <!-- Central eye/camera -->
+                                                <div class="relative">
+                                                    <div class="w-32 h-32 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center animate-pulse-glow">
+                                                        <div class="w-20 h-20 bg-dark-900 rounded-full flex items-center justify-center">
+                                                            <div class="w-12 h-12 bg-primary-400 rounded-full"></div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Connecting lines -->
+                                                    <div class="absolute -top-8 left-1/2 w-px h-16 bg-primary-400/50"></div>
+                                                    <div class="absolute -bottom-8 left-1/2 w-px h-16 bg-primary-400/50"></div>
+                                                    <div class="absolute top-1/2 -left-8 h-px w-16 bg-primary-400/50"></div>
+                                                    <div class="absolute top-1/2 -right-8 h-px w-16 bg-primary-400/50"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Floating elements -->
+                                        <div class="absolute top-8 right-8 w-8 h-8 bg-orange-400 rounded rotate-45 animate-float"></div>
+                                        <div class="absolute bottom-8 left-8 w-6 h-6 bg-primary-400 rounded-full animate-pulse"></div>
+                                    </div>
+
+                                    <!-- Glowing border effect -->
+                                    <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary-500/20 to-orange-500/20 blur-xl"></div>
+                                </div>
+
+                                <!-- MVA LAB logo overlay -->
+                                <div class="absolute bottom-8 right-8 px-6 py-3 glass-effect rounded-2xl">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-primary-400 mb-1">MVA LAB</div>
+                                        <div class="text-xs text-gray-400">Top Rated Courses</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scroll indicator -->
+                    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+                        <div class="w-6 h-10 border-2 border-primary-400 rounded-full flex justify-center">
+                            <div class="w-1 h-3 bg-primary-400 rounded-full mt-2 animate-bounce"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stats Section -->
+                <section id="stats" class="py-20 bg-gradient-to-br from-dark-900 to-dark-800 relative overflow-hidden">
+                    <!-- Background patterns -->
+                    <div class="absolute inset-0 circuit-pattern opacity-30"></div>
+                    
+                    <div class="container mx-auto px-6 relative z-10">
+                        <div class="text-center mb-16">
+                            <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
+                                Hành trình cùng 
+                                <span class="bg-gradient-to-r from-primary-400 to-orange-400 bg-clip-text text-transparent"> MVA Lab</span>
+                            </h2>
+                            <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                                Chúng tôi tự hào về những con số ấn tượng và sự tin tưởng của cộng đồng học viên
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div class="text-center group animate-fade-in-up">
+                                <div class="relative mb-6">
+                                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-dark-700 to-dark-800 rounded-2xl flex items-center justify-center glass-effect group-hover:glow-effect transition-all duration-300">
+                                        <i class="fas fa-graduation-cap text-3xl text-primary-400"></i>
+                                    </div>
+                                    <div class="absolute inset-0 w-20 h-20 mx-auto rounded-2xl border-2 border-primary-500/20 group-hover:border-primary-500/50 transition-colors duration-300 animate-pulse"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="text-4xl lg:text-5xl font-bold text-white">
+                                        <span class="counter" data-target="2">0</span>+
+                                    </div>
+                                    <div class="text-lg font-medium text-primary-400">Khóa học</div>
+                                    <div class="w-12 h-1 bg-gradient-to-r from-primary-400 to-orange-400 mx-auto rounded-full"></div>
+                                </div>
+                            </div>
+
+                            <div class="text-center group animate-fade-in-up" style="animation-delay: 0.1s;">
+                                <div class="relative mb-6">
+                                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-dark-700 to-dark-800 rounded-2xl flex items-center justify-center glass-effect group-hover:glow-effect transition-all duration-300">
+                                        <i class="fas fa-chalkboard-teacher text-3xl text-orange-400"></i>
+                                    </div>
+                                    <div class="absolute inset-0 w-20 h-20 mx-auto rounded-2xl border-2 border-primary-500/20 group-hover:border-primary-500/50 transition-colors duration-300 animate-pulse"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="text-4xl lg:text-5xl font-bold text-white">
+                                        <span class="counter" data-target="10">0</span>+
+                                    </div>
+                                    <div class="text-lg font-medium text-orange-400">Giảng viên</div>
+                                    <div class="w-12 h-1 bg-gradient-to-r from-primary-400 to-orange-400 mx-auto rounded-full"></div>
+                                </div>
+                            </div>
+
+                            <div class="text-center group animate-fade-in-up" style="animation-delay: 0.2s;">
+                                <div class="relative mb-6">
+                                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-dark-700 to-dark-800 rounded-2xl flex items-center justify-center glass-effect group-hover:glow-effect transition-all duration-300">
+                                        <i class="fas fa-users text-3xl text-green-400"></i>
+                                    </div>
+                                    <div class="absolute inset-0 w-20 h-20 mx-auto rounded-2xl border-2 border-primary-500/20 group-hover:border-primary-500/50 transition-colors duration-300 animate-pulse"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="text-4xl lg:text-5xl font-bold text-white">
+                                        <span class="counter" data-target="200">0</span>+
+                                    </div>
+                                    <div class="text-lg font-medium text-green-400">Học viên</div>
+                                    <div class="w-12 h-1 bg-gradient-to-r from-primary-400 to-orange-400 mx-auto rounded-full"></div>
+                                </div>
+                            </div>
+
+                            <div class="text-center group animate-fade-in-up" style="animation-delay: 0.3s;">
+                                <div class="relative mb-6">
+                                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-dark-700 to-dark-800 rounded-2xl flex items-center justify-center glass-effect group-hover:glow-effect transition-all duration-300">
+                                        <i class="fas fa-box text-3xl text-purple-400"></i>
+                                    </div>
+                                    <div class="absolute inset-0 w-20 h-20 mx-auto rounded-2xl border-2 border-primary-500/20 group-hover:border-primary-500/50 transition-colors duration-300 animate-pulse"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="text-4xl lg:text-5xl font-bold text-white">
+                                        <span class="counter" data-target="1">0</span>+
+                                    </div>
+                                    <div class="text-lg font-medium text-purple-400">Sản phẩm</div>
+                                    <div class="w-12 h-1 bg-gradient-to-r from-primary-400 to-orange-400 mx-auto rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional decorative elements -->
+                        <div class="flex justify-center mt-16">
+                            <div class="flex items-center space-x-4 px-8 py-4 glass-effect rounded-2xl">
+                                <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                                <span class="text-green-400 font-medium">Đang phát triển mạnh mẽ</span>
+                                <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Courses Section with Slider -->
+                <section id="courses" class="py-20 bg-gradient-to-br from-dark-800 to-dark-900 relative overflow-hidden">
+                    <!-- Background decorations -->
+                    <div class="absolute inset-0 circuit-pattern opacity-20"></div>
+                    <div class="absolute top-20 right-20 w-40 h-40 bg-primary-500/5 rounded-full blur-3xl"></div>
+                    <div class="absolute bottom-20 left-20 w-60 h-60 bg-orange-500/5 rounded-full blur-3xl"></div>
+
+                    <div class="container mx-auto px-6 relative z-10">
+                        <!-- Section Header -->
+                        <div class="text-center mb-16">
+                            <div class="inline-flex items-center px-6 py-3 bg-primary-500/20 rounded-full text-primary-300 text-sm border border-primary-500/30 mb-6">
+                                <i class="fas fa-star mr-2"></i>
+                                Tại sao chọn chúng tôi?
+                            </div>
+
+                            <h2 class="text-4xl lg:text-6xl font-bold mb-6">
+                                <span class="text-white">Khóa học</span>
+                                <span class="bg-gradient-to-r from-primary-400 to-orange-400 bg-clip-text text-transparent"> nổi bật</span>
+                            </h2>
+
+                            <p class="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
+                                Chương trình đào tạo tại MVA Lab được xây dựng dựa vào phần mềm cái ra kinh nghiệm, kiến 
+                                thức giúp từ thực hành về thực tế triển khai cài đặt lộ trình phần mềm thành chuẩn công nghiệp 
+                                của C#, WPF, WinUI, Halcon, OpenCV, v.v. Cùng với cả các chuyên gia có nhiều năm kinh 
+                                nghiệm triển khai các ứng dụng thực tế trong tình thực tế đông hóa...
+                            </p>
+                        </div>
+
+                        <!-- Courses Slider -->
+                        <div class="relative">
+                            <div id="courses-slider" class="overflow-hidden rounded-2xl">
+                                <div class="flex transition-transform duration-500 ease-in-out">
+                                    <!-- Course Slide 1 -->
+                                    <div class="w-full flex-shrink-0">
+                                        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+                                            <!-- Course Card 1 -->
+                                            <div class="group relative overflow-hidden rounded-2xl glass-effect hover:glow-effect transition-all duration-300 hover:-translate-y-2">
+                                                <div class="relative h-48 overflow-hidden">
+                                                    <div class="absolute inset-0 bg-gradient-to-br from-dark-800 to-dark-900 circuit-pattern"></div>
+                                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                                    
+                                                    <div class="absolute top-4 left-4 px-3 py-1 bg-primary-500/20 rounded-full text-primary-300 text-sm font-medium border border-primary-500/30">
+                                                        PC001
+                                                    </div>
+
+                                                    <div class="absolute top-4 right-4 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-400 group-hover:bg-orange-500/30 transition-colors duration-300">
+                                                        <i class="fas fa-edit text-sm"></i>
+                                                    </div>
+
+                                                    <div class="absolute bottom-4 left-4 text-sm text-gray-300">
+                                                        <i class="fas fa-user mr-2"></i>
+                                                        Lê Minh Quang
+                                                    </div>
+                                                </div>
+
+                                                <div class="p-6">
+                                                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-primary-300 transition-colors duration-300">
+                                                        PC Control - Điều khiển máy công nghiệp
+                                                    </h3>
+                                                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                                                        Khóa học chuyên sâu về điều khiển máy công nghiệp sử dụng PC, lập trình PLC và hệ thống tự động hóa.
+                                                    </p>
+                                                    
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center text-sm text-gray-500">
+                                                            <i class="fas fa-clock mr-2"></i>
+                                                            Từ ngày 01/01/1970 đến ngày 01/01/1970
+                                                        </div>
+                                                        <div class="flex items-center space-x-2">
+                                                            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                                            <span class="text-xs text-green-400">Đang mở</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Course Card 2 -->
+                                            <div class="group relative overflow-hidden rounded-2xl glass-effect hover:glow-effect transition-all duration-300 hover:-translate-y-2">
+                                                <div class="relative h-48 overflow-hidden">
+                                                    <div class="absolute inset-0 bg-gradient-to-br from-dark-800 to-dark-900 circuit-pattern"></div>
+                                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                                    
+                                                    <div class="absolute top-4 left-4 px-3 py-1 bg-primary-500/20 rounded-full text-primary-300 text-sm font-medium border border-primary-500/30">
+                                                        FE001
+                                                    </div>
+
+                                                    <div class="absolute top-4 right-4 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-400 group-hover:bg-orange-500/30 transition-colors duration-300">
+                                                        <i class="fas fa-edit text-sm"></i>
+                                                    </div>
+
+                                                    <div class="absolute bottom-4 left-4 text-sm text-gray-300">
+                                                        <i class="fas fa-user mr-2"></i>
+                                                        Nguyễn Văn Hải
+                                                    </div>
+                                                </div>
+
+                                                <div class="p-6">
+                                                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-primary-300 transition-colors duration-300">
+                                                        Lập trình Frontend từ A-Z
+                                                    </h3>
+                                                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                                                        Học lập trình Frontend hiện đại với React, Vue.js và các công nghệ mới nhất trong phát triển web.
+                                                    </p>
+                                                    
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center text-sm text-gray-500">
+                                                            <i class="fas fa-clock mr-2"></i>
+                                                            Từ ngày 01/01/1970 đến ngày 01/01/1970
+                                                        </div>
+                                                        <div class="flex items-center space-x-2">
+                                                            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                                            <span class="text-xs text-green-400">Đang mở</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Course Card 3 -->
+                                            <div class="group relative overflow-hidden rounded-2xl glass-effect hover:glow-effect transition-all duration-300 hover:-translate-y-2">
+                                                <div class="relative h-48 overflow-hidden">
+                                                    <div class="absolute inset-0 bg-gradient-to-br from-dark-800 to-dark-900 circuit-pattern"></div>
+                                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                                    
+                                                    <div class="absolute top-4 left-4 px-3 py-1 bg-primary-500/20 rounded-full text-primary-300 text-sm font-medium border border-primary-500/30">
+                                                        VI001
+                                                    </div>
+
+                                                    <div class="absolute top-4 right-4 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-400 group-hover:bg-orange-500/30 transition-colors duration-300">
+                                                        <i class="fas fa-edit text-sm"></i>
+                                                    </div>
+
+                                                    <div class="absolute bottom-4 left-4 text-sm text-gray-300">
+                                                        <i class="fas fa-user mr-2"></i>
+                                                        Trần Thị Bích
+                                                    </div>
+                                                </div>
+
+                                                <div class="p-6">
+                                                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-primary-300 transition-colors duration-300">
+                                                        Xử lý ảnh với Machine Vision
+                                                    </h3>
+                                                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                                                        Khóa học về xử lý ảnh công nghiệp, machine vision và AI trong sản xuất tự động.
+                                                    </p>
+                                                    
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center text-sm text-gray-500">
+                                                            <i class="fas fa-clock mr-2"></i>
+                                                            Từ ngày 01/01/1970 đến ngày 01/01/1970
+                                                        </div>
+                                                        <div class="flex items-center space-x-2">
+                                                            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                                            <span class="text-xs text-green-400">Đang mở</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Course Slide 2 -->
+                                    <div class="w-full flex-shrink-0">
+                                        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+                                            <!-- Course Card 4 -->
+                                            <div class="group relative overflow-hidden rounded-2xl glass-effect hover:glow-effect transition-all duration-300 hover:-translate-y-2">
+                                                <div class="relative h-48 overflow-hidden">
+                                                    <div class="absolute inset-0 bg-gradient-to-br from-dark-800 to-dark-900 circuit-pattern"></div>
+                                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                                    
+                                                    <div class="absolute top-4 left-4 px-3 py-1 bg-primary-500/20 rounded-full text-primary-300 text-sm font-medium border border-primary-500/30">
+                                                        PC003
+                                                    </div>
+
+                                                    <div class="absolute top-4 right-4 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-400 group-hover:bg-orange-500/30 transition-colors duration-300">
+                                                        <i class="fas fa-edit text-sm"></i>
+                                                    </div>
+
+                                                    <div class="absolute bottom-4 left-4 text-sm text-gray-300">
+                                                        <i class="fas fa-user mr-2"></i>
+                                                        Lê Minh Cường
+                                                    </div>
+                                                </div>
+
+                                                <div class="p-6">
+                                                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-primary-300 transition-colors duration-300">
+                                                        PC Control - Điều khiển nâng cao
+                                                    </h3>
+                                                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                                                        Khóa học nâng cao về hệ thống điều khiển phức tạp và tích hợp đa platform.
+                                                    </p>
+                                                    
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center text-sm text-gray-500">
+                                                            <i class="fas fa-clock mr-2"></i>
+                                                            Từ ngày 01/01/1970 đến ngày 01/01/1970
+                                                        </div>
+                                                        <div class="flex items-center space-x-2">
+                                                            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                                            <span class="text-xs text-green-400">Đang mở</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Empty placeholders to maintain grid layout -->
+                                            <div class="hidden xl:block"></div>
+                                            <div class="hidden xl:block"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slider Controls -->
+                            <div class="flex justify-center mt-8 space-x-4">
+                                <button id="prev-slide" class="w-12 h-12 bg-primary-500/20 hover:bg-primary-500/40 text-primary-400 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button id="next-slide" class="w-12 h-12 bg-primary-500/20 hover:bg-primary-500/40 text-primary-400 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+
+                            <!-- Slide Indicators -->
+                            <div class="flex justify-center mt-4 space-x-2">
+                                <div class="w-3 h-3 bg-primary-400 rounded-full slide-indicator active cursor-pointer"></div>
+                                <div class="w-3 h-3 bg-gray-600 rounded-full slide-indicator cursor-pointer"></div>
+                            </div>
+                        </div>
+
+                        <!-- Call to Action -->
+                        <div class="text-center mt-16">
+                            <div class="inline-flex flex-col sm:flex-row gap-4">
+                                <button class="group px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-300 flex items-center justify-center glow-effect hover:scale-105">
+                                    <i class="fas fa-eye mr-3"></i>
+                                    Tìm hiểu thêm về MVA Lab
+                                    <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+                                </button>
+                                
+                                <button class="px-8 py-4 border-2 border-orange-500 text-orange-400 rounded-xl font-semibold hover:bg-orange-500 hover:text-white transition-all duration-300 flex items-center justify-center">
+                                    <i class="fas fa-calendar-alt mr-3"></i>
+                                    Đặt lịch tư vấn
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- About Section -->
+                <section id="about" class="py-20 bg-gradient-to-br from-dark-900 to-dark-800 relative overflow-hidden">
+                    <!-- Background patterns -->
+                    <div class="absolute inset-0 circuit-pattern opacity-20"></div>
+                    <div class="absolute top-0 left-0 w-72 h-72 bg-primary-500/10 rounded-full blur-3xl"></div>
+                    <div class="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
+
+                    <div class="container mx-auto px-6 relative z-10">
+                        <div class="grid lg:grid-cols-2 gap-16 items-center">
+                            <!-- Left Content -->
+                            <div class="space-y-8">
+                                <div class="space-y-6">
+                                    <div class="inline-flex items-center px-4 py-2 bg-orange-500/20 rounded-full text-orange-300 text-sm border border-orange-500/30">
+                                        <i class="fas fa-lightbulb mr-2"></i>
+                                        Tại sao chọn chúng tôi?
+                                    </div>
+
+                                    <h2 class="text-4xl lg:text-5xl font-bold leading-tight">
+                                        <span class="text-white">Hãy bắt đầu hành trình của bạn với </span>
+                                        <span class="bg-gradient-to-r from-primary-400 to-orange-400 bg-clip-text text-transparent">
+                                            MVA Lab!
+                                        </span>
+                                    </h2>
+
+                                    <p class="text-lg text-gray-400 leading-relaxed">
+                                        Các khóa học tại MVA Lab giúp triết kế những kiến thức thực tế theo trau dồi 
+                                        câu thực hiện trong công nghiệp, sử dụng ngôn ngữ C#, Python, cùng một Kẻ hi 
+                                        ngôn từ quá Senai, TCP/IP, Modbus và nhiều chuẩn công nghiệp khác.
+                                    </p>
+                                </div>
+
+                                <!-- Features -->
+                                <div class="space-y-6">
+                                    <div class="flex space-x-4 group">
+                                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                            <i class="fas fa-microchip text-white text-xl"></i>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <h3 class="text-xl font-semibold text-white group-hover:text-primary-300 transition-colors duration-300">
+                                                Xây dựng phần mềm điều khiển chuyên nghiệp từ nền tảng
+                                            </h3>
+                                            <p class="text-gray-400 leading-relaxed">
+                                                Học tập từ PC Control bí cá bản đến nâng cao với các kỹ năng lập trình giao thức phức tạp 5S, và kỹ sự xuất sắc và đầu tư lãnh hội thường.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex space-x-4 group">
+                                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                            <i class="fas fa-rocket text-white text-xl"></i>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <h3 class="text-xl font-semibold text-white group-hover:text-primary-300 transition-colors duration-300">
+                                                Được đào tạo bởi chuyên gia giải kinh nghiệm thực tiễn
+                                            </h3>
+                                            <p class="text-gray-400 leading-relaxed">
+                                                Khóa học ai kém project mà phòng thật thật thực, có chuyên gia hướng dẫn giúp kinh nghiệm thực tế.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="group px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center glow-effect hover:scale-105">
+                                    <i class="fas fa-info-circle mr-3"></i>
+                                    Tìm hiểu thêm về MVA Lab
+                                    <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+                                </button>
+                            </div>
+
+                            <!-- Right Content - MVA Lab Visual -->
+                            <div class="relative">
+                                <div class="relative w-full h-96 lg:h-[500px]">
+                                    <!-- Main card -->
+                                    <div class="relative w-full h-full bg-gradient-to-br from-dark-700 to-dark-900 rounded-3xl p-8 glass-effect shadow-2xl overflow-hidden">
+                                        <!-- Top section with logo -->
+                                        <div class="flex items-center justify-between mb-8">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl flex items-center justify-center">
+                                                    <i class="fas fa-eye text-white text-xl"></i>
+                                                </div>
+                                                <div>
+                                                    <div class="text-white font-bold text-lg">MVA LAB</div>
+                                                    <div class="text-gray-400 text-sm">Top Rated Courses</div>
+                                                </div>
+                                            </div>
+                                            <div class="px-3 py-1 bg-green-500/20 rounded-full text-green-400 text-sm border border-green-500/30">
+                                                Online
+                                            </div>
+                                        </div>
+
+                                        <!-- Central logo design -->
+                                        <div class="flex items-center justify-center h-48">
+                                            <div class="relative">
+                                                <!-- Outer triangle -->
+                                                <div class="w-32 h-32 relative">
+                                                    <svg class="w-full h-full" viewBox="0 0 100 100">
+                                                        <polygon 
+                                                            points="50,10 90,70 10,70" 
+                                                            fill="none" 
+                                                            stroke="currentColor" 
+                                                            stroke-width="2"
+                                                            class="text-primary-400"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                                
+                                                <!-- Inner eye -->
+                                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                                    <div class="w-16 h-16 bg-primary-400 rounded-full flex items-center justify-center animate-pulse-glow">
+                                                        <div class="w-8 h-8 bg-dark-900 rounded-full flex items-center justify-center">
+                                                            <div class="w-4 h-4 bg-primary-400 rounded-full"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- M and V letters -->
+                                                <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+                                                    <div class="text-3xl font-bold text-white tracking-wider">MVA LAB</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Floating particles -->
+                                        <div class="absolute top-16 right-16 w-4 h-4 bg-orange-400 rounded-full animate-float"></div>
+                                        <div class="absolute bottom-16 left-16 w-3 h-3 bg-primary-400 rounded-full animate-pulse"></div>
+                                        <div class="absolute top-32 left-12 w-2 h-2 bg-green-400 rounded-full animate-bounce"></div>
+
+                                        <!-- Circuit pattern overlay -->
+                                        <div class="absolute inset-0 circuit-pattern opacity-10"></div>
+                                    </div>
+
+                                    <!-- Glow effect -->
+                                    <div class="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-orange-500/20 rounded-3xl blur-xl"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Footer -->
+            <footer class="bg-dark-900 border-t border-dark-700 py-12">
+                <div class="container mx-auto px-6">
+                    <div class="grid md:grid-cols-4 gap-8">
+                        <!-- Company Info -->
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center">
+                                    <span class="text-white font-bold">M</span>
+                                </div>
+                                <span class="text-xl font-bold text-white">MVA Lab</span>
+                            </div>
+                            <p class="text-gray-400">
+                                Nền tảng giáo dục công nghệ hàng đầu Việt Nam
+                            </p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-primary-500/20 rounded-lg flex items-center justify-center text-primary-400 hover:bg-primary-500/30 transition-colors">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-primary-500/20 rounded-lg flex items-center justify-center text-primary-400 hover:bg-primary-500/30 transition-colors">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-primary-500/20 rounded-lg flex items-center justify-center text-primary-400 hover:bg-primary-500/30 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div>
+                            <h3 class="text-white font-semibold mb-4">Liên kết nhanh</h3>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Khóa học</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Giải pháp</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Blog</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Liên hệ</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Support -->
+                        <div>
+                            <h3 class="text-white font-semibold mb-4">Hỗ trợ</h3>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Trung tâm trợ giúp</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Câu hỏi thường gặp</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Chính sách</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">Điều khoản</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact -->
+                        <div>
+                            <h3 class="text-white font-semibold mb-4">Liên hệ</h3>
+                            <div class="space-y-2 text-gray-400">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-map-marker-alt w-4"></i>
+                                    <span>Hà Nội, Việt Nam</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-phone w-4"></i>
+                                    <span>+84 123 456 789</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-envelope w-4"></i>
+                                    <span>info@mvalab.vn</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-dark-700 mt-8 pt-8 text-center text-gray-400">
+                        <p>&copy; 2024 MVA Lab. Tất cả quyền được bảo lưu.</p>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Scroll to top button -->
+            <button
+                id="scroll-to-top"
+                class="fixed bottom-8 right-8 w-12 h-12 bg-primary-500 hover:bg-primary-600 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 z-40 opacity-0 scale-0"
+                style="transform: scale(0); opacity: 0;"
+            >
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Loading screen
+            const loadingScreen = document.getElementById('loading');
+            const mainContent = document.getElementById('main-content');
+            
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    mainContent.style.display = 'block';
+                }, 500);
+            }, 2000);
+
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('glass-effect', 'shadow-lg');
+                    header.classList.remove('bg-transparent');
+                } else {
+                    header.classList.remove('glass-effect', 'shadow-lg');
+                    header.classList.add('bg-transparent');
+                }
+            });
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            let isMobileMenuOpen = false;
+
+            mobileMenuBtn.addEventListener('click', () => {
+                isMobileMenuOpen = !isMobileMenuOpen;
+                const icon = mobileMenuBtn.querySelector('i');
+                
+                if (isMobileMenuOpen) {
+                    mobileMenu.style.height = 'auto';
+                    mobileMenu.style.opacity = '1';
+                    icon.className = 'fas fa-times';
+                } else {
+                    mobileMenu.style.height = '0';
+                    mobileMenu.style.opacity = '0';
+                    icon.className = 'fas fa-bars';
+                }
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                    // Close mobile menu if open
+                    if (isMobileMenuOpen) {
+                        mobileMenu.style.height = '0';
+                        mobileMenu.style.opacity = '0';
+                        mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                        isMobileMenuOpen = false;
+                    }
+                });
+            });
+
+            // Animated counters
+            const counters = document.querySelectorAll('.counter');
+            const animateCounter = (counter) => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const startTime = performance.now();
+                
+                const animate = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Easing function
+                    const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                    const currentValue = Math.floor(target * easeOutQuart);
+                    
+                    counter.textContent = currentValue;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    }
+                };
+                
+                requestAnimationFrame(animate);
+            };
+
+            // Intersection Observer for counter animation
+            const observeCounters = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observeCounters.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => {
+                observeCounters.observe(counter);
+            });
+
+            // Course slider functionality
+            const slider = document.querySelector('#courses-slider .flex');
+            const prevBtn = document.getElementById('prev-slide');
+            const nextBtn = document.getElementById('next-slide');
+            const indicators = document.querySelectorAll('.slide-indicator');
+            let currentSlide = 0;
+            const totalSlides = 2;
+
+            const updateSlider = () => {
+                const translateX = -currentSlide * 100;
+                slider.style.transform = `translateX(${translateX}%)`;
+                
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    if (index === currentSlide) {
+                        indicator.classList.add('active');
+                        indicator.classList.remove('bg-gray-600');
+                        indicator.classList.add('bg-primary-400');
+                    } else {
+                        indicator.classList.remove('active');
+                        indicator.classList.add('bg-gray-600');
+                        indicator.classList.remove('bg-primary-400');
+                    }
+                });
+            };
+
+            nextBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            });
+
+            // Auto-advance slider
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            }, 5000);
+
+            // Indicator click handlers
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSlider();
+                });
+            });
+
+            // Scroll to top button
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.style.opacity = '1';
+                    scrollToTopBtn.style.transform = 'scale(1)';
+                } else {
+                    scrollToTopBtn.style.opacity = '0';
+                    scrollToTopBtn.style.transform = 'scale(0)';
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Add animation classes when elements come into view
+            const observeAnimations = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in-up');
+                    }
+                });
+            }, { 
+                threshold: 0.1,
+                rootMargin: '50px'
+            });
+
+            // Observe elements for animation
+            document.querySelectorAll('section').forEach(section => {
+                observeAnimations.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
